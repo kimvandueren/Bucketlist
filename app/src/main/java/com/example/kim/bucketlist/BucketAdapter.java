@@ -28,12 +28,20 @@ public class BucketAdapter extends RecyclerView.Adapter<BucketViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BucketViewHolder holder, int i) {
         final BucketItem bucketItem = listBucketItem.get(i);
-        holder.bucketTitle.setText(bucketItem.getmBucketTitle());
-        holder.bucketDetail.setText(bucketItem.getmBucketDetail());
+        holder.bucketTitle.setText(bucketItem.getBucketTitle());
+        holder.bucketDetail.setText(bucketItem.getBucketDetail());
     }
 
     @Override
     public int getItemCount() {
         return listBucketItem.size();
+    }
+
+    public void swapList (List<BucketItem> newList) {
+        listBucketItem = newList;
+        if (newList != null) {
+            // Force the RecyclerView to refresh
+            this.notifyDataSetChanged();
+        }
     }
 }
